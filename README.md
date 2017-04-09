@@ -5,24 +5,23 @@ It also contains submodules for various dependencies
 and Pothos toolkits to make it easy to install
 the entire Pothos software suite in one build.
 
-##Documentation
+## Documentation
 
 * https://github.com/pothosware/pothos/wiki
 
-##Build Status
+## Build Status
 
 - Travis: [![Travis Build Status](https://travis-ci.org/pothosware/pothos.svg?branch=master)](https://travis-ci.org/pothosware/pothos)
 - AppVeyor: [![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/7owo8qb9oldw8iq8)](https://ci.appveyor.com/project/guruofquality/pothos)
 
 ## Dependencies
 
-The poco, serialization, muparserx, and spuce libraries are available
+The poco, muparserx, and spuce libraries are available
 as git submodules to simplify building this project from source.
 The user may install these dependencies separately prior to building,
 or the build will install them automatically from submodule if missing.
 
 * poco C++ utility library (framework+toolkit dependency)
-* pothos-serialization library (framework dependency)
 * muparserx expression parser (framework dependency)
 * spuce filter design library (toolkit dependency)
 
@@ -66,8 +65,8 @@ This repository is a meta-project for developing, building, and installing
 the main Pothos framework, core dependency libraries, and official toolkits.
 License files and source code are available in each project sub-directory.
 
-The core Pothos library, Pothos serialization support library,
-Poco C++ libraries, and official toolkits found in this repository
+The core Pothos library, Poco C++ libraries,
+and official toolkits found in this repository
 are available under the Boost Software License - Version 1.0.
 
 Please note that Pothos toolkits that are NOT found in this repository,

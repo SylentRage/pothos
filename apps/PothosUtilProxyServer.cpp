@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2016 Josh Blum
+// Copyright (c) 2013-2017 Josh Blum
 // SPDX-License-Identifier: BSL-1.0
 
 #include "PothosUtil.hpp"
@@ -99,14 +99,22 @@ Poco::Net::TCPServerConnection *MyTCPServerConnectionFactory::createConnection(c
  **********************************************************************/
 void PothosUtilBase::proxyServer(const std::string &, const std::string &uriStr)
 {
-    //set stdio to be unbuffered to prevent IO backup when this is a subprocess
-    std::cout.setf(std::ios::unitbuf);
-    std::cerr.setf(std::ios::unitbuf);
-    std::clog.setf(std::ios::unitbuf);
+    //remove automatic flushing from iostreams
+    //only flushes on newlines and intentional flushes
+    std::cout << std::nounitbuf;
+    std::cerr << std::nounitbuf;
+    std::clog << std::nounitbuf;
 
-    //remove buffering for stdout and stderr for printf() users
+    //fully buffered IO backs up and is not acceptable for logging
+    //set stdio to be line buffered which is useful for logging
+    //on windows, line buffering is not supported, use unbuffered
+    #ifdef _MSC_VER
     setvbuf(stdout, nullptr, _IONBF, 0);
     setvbuf(stderr, nullptr, _IONBF, 0);
+    #else
+    setvbuf(stdout, nullptr, _IOLBF, 0);
+    setvbuf(stderr, nullptr, _IOLBF, 0);
+    #endif
 
     Pothos::ScopedInit init;
 
